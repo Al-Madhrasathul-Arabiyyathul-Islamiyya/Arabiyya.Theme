@@ -24,7 +24,7 @@
           Classes="NavItemGrid"
           ColumnDefinitions="Auto,*,Auto">
 
-          <!--  Icon: Visible based on SideNav's ShowIcons property  -->
+          <!--  Icon  -->
           <TextBlock
             Grid.Column="0"
             HorizontalAlignment="Center"
