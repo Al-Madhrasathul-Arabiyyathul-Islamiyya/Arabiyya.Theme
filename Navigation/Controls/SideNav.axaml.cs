@@ -106,38 +106,24 @@ public partial class SideNav : UserControl
     }
 
     /// <summary>
-    /// Handles changes to dependency properties, particularly Config and NavigationService.
-    /// </summary>
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
-    {
-        base.OnPropertyChanged(change);
-
-        // Update width and label visibility when IsExpanded changes (if controlled internally or via Config)
-        if (change.Property == ConfigProperty && change.NewValue is NavigationConfig newConfig)
-        {
-            // If Config itself changes, re-evaluate width based on its IsExpanded
-            UpdateWidth(newConfig.IsExpanded);
-        }
-    }
-
-    /// <summary>
-    /// Sets up bindings for the internal ListBox when the control is attached to the visual tree.
+    /// Sets up the control when it's attached to the visual tree.
     /// </summary>
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
 
-        UpdateVisualStates();
-
+        // Subscribe to theme changes
         if (Application.Current != null)
         {
             Application.Current.ActualThemeVariantChanged += OnApplicationThemeChanged;
         }
 
+        // Set up Config property change monitoring
         if (Config != null)
         {
             Config.PropertyChanged += Config_PropertyChanged;
             UpdateWidth(Config.IsExpanded);
+            UpdateVisualStates();
         }
     }
 
@@ -147,36 +133,17 @@ public partial class SideNav : UserControl
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnDetachedFromVisualTree(e);
+
+        // Unsubscribe from theme changes
         if (Application.Current != null)
         {
             Application.Current.ActualThemeVariantChanged -= OnApplicationThemeChanged;
         }
+
+        // Unsubscribe from Config changes
         if (Config != null)
         {
             Config.PropertyChanged -= Config_PropertyChanged;
-        }
-    }
-
-    protected override void OnLoaded(RoutedEventArgs e)
-    {
-        base.OnLoaded(e);
-
-        UpdateWidth(Config?.IsExpanded ?? true);
-    }
-
-    /// <summary>
-    /// Updates visual states like glass/acrylic panel class based on current settings.
-    /// </summary>
-    private void UpdateVisualStates()
-    {
-        var glassPanel = this.FindControl<GlassmorphicPanel>("GlassPanel");
-        if (glassPanel != null && Config != null)
-        {
-            UpdateGlassClass(glassPanel, Config.UseGlassEffect);
-        }
-        if (Config != null)
-        {
-            UpdateWidth(Config.IsExpanded);
         }
     }
 
@@ -200,7 +167,19 @@ public partial class SideNav : UserControl
     /// </summary>
     private void OnApplicationThemeChanged(object? sender, EventArgs e)
     {
-        UpdateVisualStates();
+         UpdateVisualStates();
+    }
+
+    /// <summary>
+    /// Updates visual states like glass/acrylic panel class based on current settings.
+    /// </summary>
+    private void UpdateVisualStates()
+    {
+        var glassPanel = this.FindControl<GlassmorphicPanel>("GlassPanel");
+        if (glassPanel != null && Config != null)
+        {
+            UpdateGlassClass(glassPanel, Config.UseGlassEffect);
+        }
     }
 
     /// <summary>
