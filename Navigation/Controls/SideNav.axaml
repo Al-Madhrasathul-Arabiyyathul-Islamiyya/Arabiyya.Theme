@@ -34,7 +34,7 @@
             IsVisible="{Binding $parent[local:SideNav].ShowIcons}"
             Text="{Binding Icon}" />
 
-          <!--  Label: Visible based on SideNav's ShowLabels property  -->
+          <!--  Label  -->
           <TextBlock
             Grid.Column="1"
             Margin="0,0,0,2"
@@ -44,7 +44,7 @@
             Text="{Binding Label}"
             TextTrimming="CharacterEllipsis" />
 
-          <!--  Badge: Binds to NavigationItem properties  -->
+          <!--  Badge  -->
           <Border
             Grid.Column="2"
             Margin="4,0,12,0"
@@ -60,7 +60,7 @@
               Text="{Binding BadgeText}" />
           </Border>
 
-          <!--  Expander Icon: Binds to NavigationItem properties  -->
+          <!--  Expander Icon  -->
           <TextBlock
             Grid.Column="2"
             Margin="0,0,12,0"
@@ -71,7 +71,7 @@
             Text="{Binding IsExpanded, Converter={StaticResource ExpandIconConverter}}" />
         </Grid>
 
-        <!--  Child items: Binds to NavigationItem properties  -->
+        <!--  Child items  -->
         <ItemsControl
           Margin="20,0,0,0"
           IsVisible="{Binding IsExpanded}"
