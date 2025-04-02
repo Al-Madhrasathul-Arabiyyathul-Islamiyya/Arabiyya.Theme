@@ -16,7 +16,6 @@
   <!--  DataContext for internal bindings is the SideNav control  -->
 
   <UserControl.Resources>
-    <!--  DataTemplate DataType is NavigationItem  -->
     <DataTemplate x:Key="NavItemTemplate" x:DataType="navmodels:NavigationItem">
       <StackPanel ToolTip.Tip="{Binding Label}">
         <Grid
