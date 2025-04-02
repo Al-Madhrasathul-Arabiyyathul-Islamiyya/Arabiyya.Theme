@@ -111,13 +111,9 @@ public partial class SideNav : UserControl
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
-        // Re-bind ListBox when Config or NavigationService changes
-        if (change.Property == ConfigProperty || change.Property == NavigationServiceProperty)
-        {
-            SetupListBoxBindings();
-        }
+
         // Update width and label visibility when IsExpanded changes (if controlled internally or via Config)
-        else if (change.Property == ConfigProperty && change.NewValue is NavigationConfig newConfig)
+        if (change.Property == ConfigProperty && change.NewValue is NavigationConfig newConfig)
         {
             // If Config itself changes, re-evaluate width based on its IsExpanded
             UpdateWidth(newConfig.IsExpanded);
@@ -130,16 +126,14 @@ public partial class SideNav : UserControl
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
-        SetupListBoxBindings();
+
         UpdateVisualStates();
 
-        // Subscribe to theme changes for dynamic updates
         if (Application.Current != null)
         {
             Application.Current.ActualThemeVariantChanged += OnApplicationThemeChanged;
         }
 
-        // Subscribe to Config property changes for dynamic updates (e.g., IsExpanded)
         if (Config != null)
         {
             Config.PropertyChanged += Config_PropertyChanged;
@@ -171,35 +165,6 @@ public partial class SideNav : UserControl
     }
 
     /// <summary>
-    /// Updates the ListBox ItemsSource and SelectedItem bindings based on the current Config and NavigationService.
-    /// </summary>
-    private void SetupListBoxBindings()
-    {
-        var listBox = this.FindControl<ListBox>("NavItemsListBox");
-        if (listBox != null)
-        {
-            // Clear previous bindings first to be safe
-            listBox.ClearValue(ItemsControl.ItemsSourceProperty);
-            listBox.ClearValue(ListBox.SelectedItemProperty);
-
-            if (Config != null && NavigationService != null)
-            {
-                // Bind ItemsSource directly to the Config's Items collection
-                listBox.ItemsSource = Config.Items;
-
-                // Bind SelectedItem two-way to the NavigationService's SelectedItem
-                listBox.Bind(ListBox.SelectedItemProperty,
-                    new Binding
-                    {
-                        Source = NavigationService,
-                        Path = nameof(INavigationService.SelectedItem),
-                        Mode = BindingMode.TwoWay
-                    });
-            }
-        }
-    }
-
-    /// <summary>
     /// Updates visual states like glass/acrylic panel class based on current settings.
     /// </summary>
     private void UpdateVisualStates()
@@ -214,7 +179,6 @@ public partial class SideNav : UserControl
             UpdateWidth(Config.IsExpanded);
         }
     }
-
 
     /// <summary>
     /// Handles property changes within the bound NavigationConfig object.
