@@ -1,4 +1,5 @@
-﻿namespace Arabiyya.Theme.Navigation.Models;
+﻿namespace Arabiyya.Theme.Navigation.Core.Models;
+
 /// <summary>
 /// Defines the different navigation panel display modes
 /// </summary>

@@ -1,6 +1,7 @@
-﻿using Avalonia.Controls;
+﻿using Arabiyya.Theme.Navigation.Interfaces;
+using Avalonia.Controls;
 
-namespace Arabiyya.Theme.Navigation.Services;
+namespace Arabiyya.Theme.Navigation.Core.Services;
 /// <summary>
 /// Default implementation of IViewFactory that creates and caches view instances
 /// </summary>

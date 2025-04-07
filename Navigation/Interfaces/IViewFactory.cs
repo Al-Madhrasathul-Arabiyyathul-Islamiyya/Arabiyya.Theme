@@ -1,4 +1,4 @@
-﻿namespace Arabiyya.Theme.Navigation.Services;
+﻿namespace Arabiyya.Theme.Navigation.Interfaces;
 
 /// <summary>
 /// Interface for a factory that creates or retrieves view instances

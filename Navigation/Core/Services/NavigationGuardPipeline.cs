@@ -1,7 +1,8 @@
 ﻿// NavigationGuardPipeline.cs
+using Arabiyya.Theme.Navigation.Core.Models;
 using Arabiyya.Theme.Navigation.Models;
 
-namespace Arabiyya.Theme.Navigation.Services;
+namespace Arabiyya.Theme.Navigation.Core.Services;
 
 /// <summary>
 /// Manages a pipeline of navigation guards

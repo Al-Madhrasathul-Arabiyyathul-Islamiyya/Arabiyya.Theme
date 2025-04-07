@@ -2,7 +2,7 @@
 using System.Collections.Specialized;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace Arabiyya.Theme.Navigation.Models;
+namespace Arabiyya.Theme.Navigation.Core.Models;
 
 /// <summary>
 /// Represents a navigation item in the navigation system

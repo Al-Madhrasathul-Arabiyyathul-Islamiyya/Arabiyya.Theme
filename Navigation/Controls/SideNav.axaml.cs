@@ -1,5 +1,5 @@
-﻿using Arabiyya.Theme.Navigation.Models;
-using Arabiyya.Theme.Navigation.Services;
+﻿using Arabiyya.Theme.Navigation.Core.Services;
+using Arabiyya.Theme.Navigation.Models;
 using AvaGlass.Controls;
 using Avalonia;
 using Avalonia.Controls;

@@ -1,6 +1,7 @@
-﻿using Arabiyya.Theme.Navigation.Models;
+﻿using Arabiyya.Theme.Navigation.Core.Models;
+using Arabiyya.Theme.Navigation.Models;
 
-namespace Arabiyya.Theme.Navigation.Services;
+namespace Arabiyya.Theme.Navigation.Core.Services;
 
 /// <summary>
 /// Interface for a navigation guard that controls access to navigation targets

@@ -45,9 +45,10 @@
 
   <ItemGroup>
     <Folder Include="Assets\" />
-    <Folder Include="Navigation\Controls" />
-    <Folder Include="Navigation\Models" />
-    <Folder Include="Navigation\Services" />
+    <Folder Include="Navigation\Controls\Common\" />
+    <Folder Include="Navigation\Controls\Navigation\" />
+    <Folder Include="Navigation\Core\Models\" />
+    <Folder Include="Navigation\Core\Services\" />
     <Folder Include="Styles\Components\Buttons\" />
     <Folder Include="Styles\Components\Containers\" />
     <Folder Include="Styles\Components\Patterns\" />

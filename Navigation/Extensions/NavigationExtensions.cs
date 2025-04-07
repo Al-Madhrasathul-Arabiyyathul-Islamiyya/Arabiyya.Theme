@@ -1,6 +1,6 @@
 ﻿using Arabiyya.Theme.Navigation.Controls;
+using Arabiyya.Theme.Navigation.Core.Services;
 using Arabiyya.Theme.Navigation.Models;
-using Arabiyya.Theme.Navigation.Services;
 using Avalonia;
 using Avalonia.Controls;
 

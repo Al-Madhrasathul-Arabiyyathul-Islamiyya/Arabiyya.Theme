@@ -1,14 +1,15 @@
 ﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
+using System.ComponentModel;
+using Arabiyya.Theme.Navigation.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-namespace Arabiyya.Theme.Navigation.Models;
+namespace Arabiyya.Theme.Navigation.Core.Models;
 
 /// <summary>
 /// Defines configuration options for the navigation system
 /// </summary>
-public partial class NavigationConfig : ObservableObject
+public partial class NavigationConfig : ObservableObject, IExpandable
 {
     /// <summary>
     /// Gets or sets the navigation mode
@@ -101,7 +102,26 @@ public partial class NavigationConfig : ObservableObject
     private string _defaultLayout = "default";
 
     [RelayCommand]
-    private void ToggleExpanded() => IsExpanded = !IsExpanded;
+    public void ToggleExpanded()
+    {
+        IsExpanded = !IsExpanded;
+        ExpansionChanged?.Invoke(this, IsExpanded);
+    }
+
+    /// <summary>
+    /// Event raised when the expanded state changes
+    /// </summary>
+    public event EventHandler<bool>? ExpansionChanged;
+
+    protected override void OnPropertyChanged(PropertyChangedEventArgs e)
+    {
+        base.OnPropertyChanged(e);
+
+        if (e.PropertyName == nameof(IsExpanded))
+        {
+            ExpansionChanged?.Invoke(this, IsExpanded);
+        }
+    }
 
     /// <summary>
     /// Serializes the configuration to JSON
