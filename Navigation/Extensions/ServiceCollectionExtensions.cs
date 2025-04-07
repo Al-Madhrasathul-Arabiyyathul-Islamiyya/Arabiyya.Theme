@@ -1,4 +1,6 @@
-﻿using Arabiyya.Theme.Navigation.Services;
+﻿using Arabiyya.Theme.Navigation.Core.Services;
+using Arabiyya.Theme.Navigation.Interfaces;
+using Arabiyya.Theme.Navigation.Services;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;

@@ -1,4 +1,4 @@
-﻿using Arabiyya.Theme.Navigation.Services;
+﻿using Arabiyya.Theme.Navigation.Core.Services;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;

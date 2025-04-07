@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Arabiyya.Theme.Navigation.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Arabiyya.Theme.Navigation.Services;
+namespace Arabiyya.Theme.Navigation.Core.Services;
 
 /// <summary>
 /// IViewFactory implementation that resolves views from a dependency injection container

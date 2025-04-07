@@ -1,7 +1,8 @@
-﻿using Arabiyya.Theme.Navigation.Models;
+﻿using Arabiyya.Theme.Navigation.Core.Models;
+using Arabiyya.Theme.Navigation.Models;
 using CommunityToolkit.Mvvm.Input;
 
-namespace Arabiyya.Theme.Navigation.Services;
+namespace Arabiyya.Theme.Navigation.Core.Services;
 
 /// <summary>
 /// Interface defining the navigation service functionality.

@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using Arabiyya.Theme.Navigation.Models;
+﻿using Arabiyya.Theme.Navigation.Core.Events;
+using Arabiyya.Theme.Navigation.Core.Models;
+using Arabiyya.Theme.Navigation.Core.Services;
+using Arabiyya.Theme.Navigation.Interfaces;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -11,7 +13,7 @@ namespace Arabiyya.Theme.Navigation.Services;
 /// Default implementation of the <see cref="INavigationService"/> interface.
 /// Handles view creation, navigation logic, history management, and guard execution.
 /// </summary>
-public partial class NavigationService : ObservableObject, INavigationService
+public partial class NavigationService : ObservableObject, INavigationService, INavigator
 {
     private readonly IViewFactory _viewFactory;
     private readonly IMessenger _messenger;
@@ -456,17 +458,14 @@ public partial class NavigationService : ObservableObject, INavigationService
             stack.Push(temp.Pop());
         }
     }
+
+
+    IReadOnlyList<NavigationItem>? INavigator.Items => Items;
+    NavigationItem? INavigator.SelectedItem => SelectedItem;
+
+    Task<bool> INavigator.NavigateToAsync(NavigationItem item) => NavigateToAsync(item);
+
+    Task<bool> INavigator.NavigateToAsync(string itemId) => NavigateToAsync(itemId);
 }
 
-/// <summary>
-/// Message sent when navigation has completed
-/// </summary>
-public record NavigationCompletedMessage(NavigationItem Item, object Content);
 
-/// <summary>
-/// Message sent when a navigation guard rejects navigation
-/// </summary>
-public record NavigationGuardRejectedMessage(
-    NavigationItem SourceItem,
-    NavigationItem TargetItem,
-    NavigationGuardResult Result);

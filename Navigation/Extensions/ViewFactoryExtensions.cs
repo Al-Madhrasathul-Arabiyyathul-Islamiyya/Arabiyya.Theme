@@ -1,4 +1,4 @@
-﻿using Arabiyya.Theme.Navigation.Services;
+﻿using Arabiyya.Theme.Navigation.Interfaces;
 
 namespace Arabiyya.Theme.Navigation.Extensions;
 
