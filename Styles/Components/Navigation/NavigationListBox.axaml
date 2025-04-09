@@ -1,0 +1,97 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:Arabiyya.Theme.Navigation.Controls"
+    xmlns:navmodels="using:Arabiyya.Theme.Navigation.Core.Models"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  Default style for NavigationListBox  -->
+    <ControlTheme TargetType="controls:NavigationListBox" x:Key="{x:Type controls:NavigationListBox}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="8,0" />
+        <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="ItemTemplate">
+            <DataTemplate DataType="navmodels:NavigationItem">
+                <StackPanel ToolTip.Tip="{Binding Label}">
+                    <Grid ColumnDefinitions="Auto,*,Auto" Height="40">
+                        <!--  Icon  -->
+                        <TextBlock
+                            FontFamily="{StaticResource PhosphorFontFamily}"
+                            Grid.Column="0"
+                            HorizontalAlignment="Center"
+                            IsVisible="{Binding $parent[controls:NavigationListBox].ShowIcons}"
+                            Margin="12,0,8,0"
+                            Text="{Binding Icon}"
+                            VerticalAlignment="Center"
+                            Width="20" />
+
+                        <!--  Label  -->
+                        <TextBlock
+                            Classes="demibold"
+                            Grid.Column="1"
+                            IsVisible="{Binding $parent[controls:NavigationListBox].ShowLabels}"
+                            Margin="0,0,0,2"
+                            Text="{Binding Label}"
+                            TextTrimming="CharacterEllipsis"
+                            VerticalAlignment="Center" />
+
+                        <!--  Badge  -->
+                        <Border
+                            Background="{DynamicResource Brush.Primary}"
+                            CornerRadius="10"
+                            Grid.Column="2"
+                            HorizontalAlignment="Right"
+                            IsVisible="{Binding ShowBadge}"
+                            Margin="4,0,12,0"
+                            Padding="4,1"
+                            VerticalAlignment="Center">
+                            <TextBlock
+                                FontSize="10"
+                                Foreground="{DynamicResource Brush.Text.OnPrimary}"
+                                Text="{Binding BadgeText}" />
+                        </Border>
+
+                        <!--  Expander Icon for Child Items  -->
+                        <TextBlock
+                            FontFamily="{StaticResource PhosphorFontFamily}"
+                            Grid.Column="2"
+                            HorizontalAlignment="Right"
+                            IsVisible="{Binding HasChildren}"
+                            Margin="0,0,12,0"
+                            Text="{Binding IsExpanded, Converter={StaticResource ExpandIconConverter}}"
+                            VerticalAlignment="Center" />
+                    </Grid>
+
+                    <!--  Child Items  -->
+                    <ItemsControl
+                        IsVisible="{Binding IsExpanded}"
+                        ItemTemplate="{Binding $parent[controls:NavigationListBox].ItemTemplate}"
+                        ItemsSource="{Binding ChildItems}"
+                        Margin="20,0,0,0" />
+                </StackPanel>
+            </DataTemplate>
+        </Setter>
+        <Setter Property="ItemContainerTheme">
+            <ControlTheme TargetType="ListBoxItem">
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0,2" />
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="Template">
+                    <ControlTemplate>
+                        <ContentPresenter
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            Name="PART_ContentPresenter"
+                            Padding="{TemplateBinding Padding}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </ControlTemplate>
+                </Setter>
+            </ControlTheme>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

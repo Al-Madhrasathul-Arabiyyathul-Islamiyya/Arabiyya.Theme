@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using Avalonia.Data.Converters;
 
-namespace Arabiyya.Theme.Navigation.Converters;
+namespace Arabiyya.Theme.Converters;
 
 /// <summary>
 /// Converts a boolean to a theme class name

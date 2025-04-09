@@ -3,7 +3,6 @@ using Arabiyya.Theme.Navigation.Interfaces;
 using Arabiyya.Theme.Navigation.Services;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Arabiyya.Theme.Navigation.Extensions;
 
@@ -15,52 +14,43 @@ public static class ServiceCollectionExtensions
     /// <summary>
     /// Adds navigation services to the service collection
     /// </summary>
-    /// <param name="services">The service collection</param>
-    /// <returns>The service collection</returns>
     public static IServiceCollection AddNavigation(this IServiceCollection services)
     {
+        // Register the messenger
+        services.AddSingleton<IMessenger>(StrongReferenceMessenger.Default);
+
         // Register the default view factory
         services.AddSingleton<IViewFactory, DefaultViewFactory>();
 
-        // Register the navigation service
+        // Register the navigation service (also implements INavigator)
         services.AddSingleton<INavigationService, NavigationService>();
+        services.AddSingleton<INavigator>(sp => (INavigator)sp.GetRequiredService<INavigationService>());
 
         return services;
     }
 
     /// <summary>
-    /// Adds navigation services with a DI-aware view factory
+    /// Adds navigation services with DI support for view resolution
     /// </summary>
-    /// <param name="services">The service collection</param>
-    /// <returns>The service collection</returns>
     public static IServiceCollection AddNavigationWithDI(this IServiceCollection services)
     {
+        // Register the messenger
         services.AddSingleton<IMessenger>(StrongReferenceMessenger.Default);
 
+        // Register the DI view factory
         services.AddSingleton<IViewFactory>(sp => new DependencyInjectionViewFactory(sp));
 
+        // Register the navigation service (also implements INavigator)
         services.AddSingleton<INavigationService>(sp =>
         {
             var viewFactory = sp.GetRequiredService<IViewFactory>();
             var messenger = sp.GetRequiredService<IMessenger>();
 
-            System.Diagnostics.Debug.WriteLine($"Creating NavigationService with {viewFactory.GetType().Name}");
             return new NavigationService(viewFactory, messenger);
         });
 
-        return services;
-    }
+        services.AddSingleton<INavigator>(sp => (INavigator)sp.GetRequiredService<INavigationService>());
 
-    /// <summary>
-    /// Adds a navigation guard to the service collection
-    /// </summary>
-    /// <typeparam name="TGuard">The type of guard to add</typeparam>
-    /// <param name="services">The service collection</param>
-    /// <returns>The service collection</returns>
-    public static IServiceCollection AddNavigationGuard<TGuard>(this IServiceCollection services)
-        where TGuard : class, INavigationGuard
-    {
-        services.AddSingleton<INavigationGuard, TGuard>();
         return services;
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Arabiyya.Theme.Navigation.Core.Models;
 using Arabiyya.Theme.Navigation.Core.Services;
-using Arabiyya.Theme.Navigation.Models;
 
 namespace Arabiyya.Theme.Navigation.Interfaces;
 
