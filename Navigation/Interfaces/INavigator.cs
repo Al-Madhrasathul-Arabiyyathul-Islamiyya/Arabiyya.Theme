@@ -1,4 +1,5 @@
-﻿using Arabiyya.Theme.Navigation.Core.Models;
+﻿using Arabiyya.Theme.Navigation.Core.Events;
+using Arabiyya.Theme.Navigation.Core.Models;
 using Arabiyya.Theme.Navigation.Core.Services;
 
 namespace Arabiyya.Theme.Navigation.Interfaces;

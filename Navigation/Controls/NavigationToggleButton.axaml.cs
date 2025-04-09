@@ -1,43 +1,49 @@
 ﻿using Arabiyya.Theme.Navigation.Interfaces;
 using Avalonia;
-using Avalonia.Controls.Primitives;
+using Avalonia.Controls;
+using Avalonia.Interactivity;
+using Avalonia.Markup.Xaml;
 
 namespace Arabiyya.Theme.Navigation.Controls;
 
-/// <summary>
-/// A button that toggles the expanded state of an IExpandable component
-/// </summary>
-public class NavigationToggleButton : ToggleButton
+public partial class NavigationToggleButton : UserControl
 {
-    /// <summary>
-    /// Defines the Target dependency property
-    /// </summary>
+    private Button? _button;
+
     public static readonly StyledProperty<IExpandable?> TargetProperty =
         AvaloniaProperty.Register<NavigationToggleButton, IExpandable?>(nameof(Target));
 
-    /// <summary>
-    /// Gets or sets the expandable target
-    /// </summary>
+    public static readonly StyledProperty<bool> IsExpandedProperty =
+        AvaloniaProperty.Register<NavigationToggleButton, bool>(nameof(IsExpanded));
+
     public IExpandable? Target
     {
         get => GetValue(TargetProperty);
         set => SetValue(TargetProperty, value);
     }
 
-    /// <summary>
-    /// Initializes a new instance of the NavigationToggleButton class
-    /// </summary>
-    public NavigationToggleButton()
+    public bool IsExpanded
     {
-        this.Click += OnClick;
-
-        // Add standard style class
-        this.Classes.Add("navigation-toggle-button");
+        get => GetValue(IsExpandedProperty);
+        set => SetValue(IsExpandedProperty, value);
     }
 
-    /// <summary>
-    /// Called when properties change
-    /// </summary>
+    public NavigationToggleButton()
+    {
+        InitializeComponent();
+    }
+
+    private void InitializeComponent()
+    {
+        AvaloniaXamlLoader.Load(this);
+        _button = this.FindControl<Button>("PART_Button");
+
+        if (_button != null)
+        {
+            _button.Click += OnButtonClick;
+        }
+    }
+
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
@@ -52,24 +58,18 @@ public class NavigationToggleButton : ToggleButton
             if (change.NewValue is IExpandable newTarget)
             {
                 newTarget.ExpansionChanged += OnTargetExpansionChanged;
-                IsChecked = newTarget.IsExpanded;
+                IsExpanded = newTarget.IsExpanded;
             }
         }
     }
 
-    /// <summary>
-    /// Called when the button is clicked
-    /// </summary>
-    private void OnClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    private void OnButtonClick(object? sender, RoutedEventArgs e)
     {
         Target?.ToggleExpanded();
     }
 
-    /// <summary>
-    /// Called when the target's expansion state changes
-    /// </summary>
     private void OnTargetExpansionChanged(object? sender, bool isExpanded)
     {
-        IsChecked = isExpanded;
+        IsExpanded = isExpanded;
     }
 }
