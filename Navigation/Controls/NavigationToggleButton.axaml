@@ -1,0 +1,35 @@
+<UserControl
+    mc:Ignorable="d"
+    x:Class="Arabiyya.Theme.Navigation.Controls.NavigationToggleButton"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Button
+        Background="Transparent"
+        BorderThickness="0"
+        CornerRadius="4"
+        Height="36"
+        Width="36"
+        x:Name="PART_Button">
+        <TextBlock
+            FontFamily="{StaticResource PhosphorFontFamily}"
+            FontSize="18"
+            HorizontalAlignment="Center"
+            Text="{Binding IsExpanded, RelativeSource={RelativeSource AncestorType=NavigationToggleButton}, Converter={StaticResource ExpandIconConverter}}"
+            VerticalAlignment="Center"
+            x:Name="PART_Icon" />
+
+        <Button.Styles>
+            <Style Selector="Button:pointerover">
+                <Setter Property="Background" Value="{DynamicResource Brush.Background.Hover}" />
+                <Setter Property="Cursor" Value="Hand" />
+            </Style>
+
+            <Style Selector="Button:pressed">
+                <Setter Property="Background" Value="{DynamicResource Brush.Background.Pressed}" />
+            </Style>
+        </Button.Styles>
+    </Button>
+</UserControl>

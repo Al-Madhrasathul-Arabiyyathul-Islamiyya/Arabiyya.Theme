@@ -1,13 +1,12 @@
 ﻿using Arabiyya.Theme.Navigation.Core.Events;
 using Arabiyya.Theme.Navigation.Core.Models;
-using Arabiyya.Theme.Navigation.Core.Services;
 using Arabiyya.Theme.Navigation.Interfaces;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 
-namespace Arabiyya.Theme.Navigation.Services;
+namespace Arabiyya.Theme.Navigation.Core.Services;
 
 /// <summary>
 /// Default implementation of the <see cref="INavigationService"/> interface.
@@ -200,7 +199,7 @@ public partial class NavigationService : ObservableObject, INavigationService, I
         if (item.Equals(Config.SelectedItemId))
         {
             System.Diagnostics.Debug.WriteLine($"NavigationService: Skipped navigation to already selected item: {item.Label}");
-            return true; 
+            return true;
         }
 
         // Pass SelectedItem (which can be null) to guards
@@ -285,7 +284,7 @@ public partial class NavigationService : ObservableObject, INavigationService, I
     {
         ArgumentNullException.ThrowIfNull(item);
         Config?.Items.Add(item);
-        OnPropertyChanged(nameof(Items)); 
+        OnPropertyChanged(nameof(Items));
     }
 
     /// <inheritdoc/>
