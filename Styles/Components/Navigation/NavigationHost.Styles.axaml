@@ -1,0 +1,34 @@
+<Styles
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:controls="using:Arabiyya.Theme.Navigation.Controls">
+
+  <!--  Define transition animations  -->
+  <Style Selector="controls|NavigationHost ContentControl.fade">
+    <Style.Animations>
+      <Animation FillMode="Both" Duration="0:0:0.25">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="0" />
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="controls|NavigationHost ContentControl.slide">
+    <Style.Animations>
+      <Animation FillMode="Both" Duration="0:0:0.25">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="0" />
+          <Setter Property="TranslateTransform.X" Value="-20" />
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1" />
+          <Setter Property="TranslateTransform.X" Value="0" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+</Styles>

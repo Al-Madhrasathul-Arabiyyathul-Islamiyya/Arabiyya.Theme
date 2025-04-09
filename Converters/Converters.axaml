@@ -7,4 +7,9 @@
   <cv:EnumEqualityConverter x:Key="EnumEqualityConverter" />
   <cv:ThemeIconConverter x:Key="ThemeIconConverter" />
 
+  <!--  Converters  -->
+  <cv:AnyTrueConverter x:Key="AnyTrueConverter" />
+  <cv:BoolToThemeClassConverter x:Key="BoolToThemeClassConverter" />
+  <cv:ExpandIconConverter x:Key="ExpandIconConverter" />
+
 </ResourceDictionary>

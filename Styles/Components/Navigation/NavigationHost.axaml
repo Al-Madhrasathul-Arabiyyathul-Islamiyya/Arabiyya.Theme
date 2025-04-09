@@ -1,0 +1,28 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Arabiyya.Theme.Navigation.Controls">
+
+  <!-- Default style for NavigationHost -->
+  <ControlTheme x:Key="{x:Type controls:NavigationHost}" TargetType="controls:NavigationHost">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}">
+          <ContentControl
+              Name="ContentPresenter"
+              Padding="{TemplateBinding Padding}"
+              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+              Content="{TemplateBinding Content}"
+              ContentTemplate="{TemplateBinding ContentTemplate}"/>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+
+  </ControlTheme>
+</ResourceDictionary>

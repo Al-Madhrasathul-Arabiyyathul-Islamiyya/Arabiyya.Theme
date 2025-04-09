@@ -1,0 +1,38 @@
+<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:controls="using:Arabiyya.Theme.Navigation.Controls">
+
+  <!--  Default style for NavigationToggleButton  -->
+  <ControlTheme x:Key="{x:Type controls:NavigationToggleButton}" TargetType="controls:NavigationToggleButton">
+    <Setter Property="Width" Value="36" />
+    <Setter Property="Height" Value="36" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border
+          Background="{TemplateBinding Background}"
+          BorderBrush="{TemplateBinding BorderBrush}"
+          BorderThickness="{TemplateBinding BorderThickness}"
+          CornerRadius="4">
+          <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontFamily="{StaticResource PhosphorFontFamily}"
+            FontSize="18"
+            Text="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ExpandIconConverter}}" />
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:pointerover">
+      <Setter Property="Background" Value="{DynamicResource Brush.Background.Hover}" />
+      <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <Style Selector="^:pressed">
+      <Setter Property="Background" Value="{DynamicResource Brush.Background.Pressed}" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

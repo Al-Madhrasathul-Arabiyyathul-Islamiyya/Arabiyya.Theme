@@ -39,14 +39,11 @@
     <AvaloniaResource Include="Switcher\*" />
 
     <AvaloniaResource Include="ThemeServices\*" />
-
-    <AvaloniaXaml Include="Navigation\NavigationStyles.axaml" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Assets\" />
-    <Folder Include="Navigation\Controls\Common\" />
-    <Folder Include="Navigation\Controls\Navigation\" />
+    <Folder Include="Navigation\Converters\" />
     <Folder Include="Navigation\Core\Models\" />
     <Folder Include="Navigation\Core\Services\" />
     <Folder Include="Styles\Components\Buttons\" />
@@ -60,10 +57,37 @@
   <ItemGroup>
     <AvaloniaXaml Remove="Styles\Components\Containers\ContainerStyles.axaml" />
     <AvaloniaXaml Remove="Styles\Components\Inputs\InputsStyles.axaml" />
+    <AvaloniaXaml Remove="Styles\Components\Navigation\Navigation.axaml" />
+    <AvaloniaXaml Remove="Styles\Components\Navigation\NavigationHost.axaml" />
+    <AvaloniaXaml Remove="Styles\Components\Navigation\NavigationHost.Styles.axaml" />
+    <AvaloniaXaml Remove="Styles\Components\Navigation\NavigationListBox.axaml" />
+    <AvaloniaXaml Remove="Styles\Components\Navigation\NavigationListBox.Styles.axaml" />
+    <AvaloniaXaml Remove="Styles\Components\Navigation\NavigationToggleButton.axaml" />
     <AvaloniaXaml Remove="Styles\Components\Patterns\PatternsStyles.axaml" />
     <AvaloniaXaml Remove="Switcher\ThemeSwitcher.axaml" />
     <None Remove="Assets\FontsMontserrat-Italic-VariableFont_wght.ttf" />
     <None Remove="Assets\Fonts\Montserrat-VariableFont_wght.ttf" />
     <None Remove="Assets\Fonts\Phosphor-Bold.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Update="Styles\Components\Navigation\Navigation.axaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+    <AvaloniaResource Update="Styles\Components\Navigation\NavigationHost.Styles.axaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+    <AvaloniaResource Update="Styles\Components\Navigation\NavigationListBox.Styles.axaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+    <AvaloniaResource Update="Styles\Components\Navigation\NavigationHost.axaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+    <AvaloniaResource Update="Styles\Components\Navigation\NavigationListBox.axaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+    <AvaloniaResource Update="Styles\Components\Navigation\NavigationToggleButton.axaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
   </ItemGroup>
 </Project>
