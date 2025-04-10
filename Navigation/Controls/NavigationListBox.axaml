@@ -17,14 +17,17 @@
         <ListBox.ItemTemplate>
             <DataTemplate DataType="navmodels:NavigationItem">
                 <StackPanel ToolTip.Tip="{Binding Label}">
-                    <Grid ColumnDefinitions="Auto,*,Auto" Height="40">
+                    <Grid
+                        Classes="ItemGrid"
+                        ColumnDefinitions="Auto,*,Auto"
+                        Height="40">
                         <!--  Icon  -->
                         <TextBlock
+                            Classes="Icon"
                             FontFamily="{StaticResource PhosphorFontFamily}"
                             Grid.Column="0"
                             HorizontalAlignment="Center"
                             IsVisible="{Binding $parent[local:NavigationListBox].ShowIcons}"
-                            Margin="12,0,8,0"
                             Text="{Binding Icon}"
                             VerticalAlignment="Center"
                             Width="20" />
@@ -91,14 +94,19 @@
                 <Setter Property="Foreground" Value="{DynamicResource Brush.Text.Disabled}" />
             </Style>
 
-            <Style Selector="local|NavigationListBox.collapsed TextBlock">
-                <Setter Property="HorizontalAlignment" Value="Center" />
-                <Setter Property="FontSize" Value="18" />
+            <Style Selector="local|NavigationListBox TextBlock.Icon">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="Margin" Value="12,0,8,0" />
             </Style>
 
-            <Style Selector="local|NavigationListBox.expanded TextBlock">
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="FontSize" Value="14" />
+            <Style Selector="local|NavigationListBox.collapsed TextBlock.Icon">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="8,0,8,0" />
+            </Style>
+            <Style Selector="local|NavigationListBox.collapsed Grid.ItemGrid">
+                <Setter Property="HorizontalAlignment" Value="Center" />
             </Style>
         </ListBox.Styles>
     </ListBox>
