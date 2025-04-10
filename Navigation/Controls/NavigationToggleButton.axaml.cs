@@ -48,24 +48,35 @@ public partial class NavigationToggleButton : UserControl
     {
         base.OnPropertyChanged(change);
 
-        if (change.Property == TargetProperty)
+        if (change.Property != TargetProperty)
         {
-            if (change.OldValue is IExpandable oldTarget)
-            {
-                oldTarget.ExpansionChanged -= OnTargetExpansionChanged;
-            }
+            return;
+        }
 
-            if (change.NewValue is IExpandable newTarget)
-            {
-                newTarget.ExpansionChanged += OnTargetExpansionChanged;
-                IsExpanded = newTarget.IsExpanded;
-            }
+        if (change.OldValue is IExpandable oldTarget)
+        {
+            oldTarget.ExpansionChanged -= OnTargetExpansionChanged;
+        }
+
+        if (change.NewValue is IExpandable newTarget)
+        {
+            newTarget.ExpansionChanged += OnTargetExpansionChanged;
+            IsExpanded = newTarget.IsExpanded;
         }
     }
 
     private void OnButtonClick(object? sender, RoutedEventArgs e)
     {
-        Target?.ToggleExpanded();
+        if (Target == null)
+        {
+            return;
+        }
+
+        Target.ToggleExpanded();
+
+        IsExpanded = Target.IsExpanded;
+
+        System.Diagnostics.Debug.WriteLine($"Toggle button clicked. Target is now {(Target.IsExpanded ? "expanded" : "collapsed")}");
     }
 
     private void OnTargetExpansionChanged(object? sender, bool isExpanded)

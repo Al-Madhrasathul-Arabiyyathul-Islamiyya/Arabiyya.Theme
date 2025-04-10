@@ -1,15 +1,15 @@
 <ResourceDictionary
-  xmlns="https://github.com/avaloniaui"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:cv="using:Arabiyya.Theme.Converters">
+    xmlns="https://github.com/avaloniaui"
+    xmlns:cv="using:Arabiyya.Theme.Converters"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-  <cv:BoolToIndexConverter x:Key="BoolToIndexConverter" />
-  <cv:EnumEqualityConverter x:Key="EnumEqualityConverter" />
-  <cv:ThemeIconConverter x:Key="ThemeIconConverter" />
+    <cv:BoolToIndexConverter x:Key="BoolToIndexConverter" />
+    <cv:EnumEqualityConverter x:Key="EnumEqualityConverter" />
+    <cv:ThemeIconConverter x:Key="ThemeIconConverter" />
 
-  <!--  Converters  -->
-  <cv:AnyTrueConverter x:Key="AnyTrueConverter" />
-  <cv:BoolToThemeClassConverter x:Key="BoolToThemeClassConverter" />
-  <cv:ExpandIconConverter x:Key="ExpandIconConverter" />
+    <cv:AnyTrueConverter x:Key="AnyTrueConverter" />
+    <cv:BoolToThemeClassConverter x:Key="BoolToThemeClassConverter" />
+    <cv:ExpandIconConverter x:Key="ExpandIconConverter" />
+    <cv:BoolToWidthConverter x:Key="BoolToWidthConverter" />
 
 </ResourceDictionary>
