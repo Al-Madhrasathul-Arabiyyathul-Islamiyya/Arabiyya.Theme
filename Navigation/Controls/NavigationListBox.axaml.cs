@@ -73,17 +73,19 @@ public partial class NavigationListBox : UserControl
 
                 newNavigator.Navigated += OnNavigatorNavigated;
 
-                if (newNavigator.SelectedItem != null && _listBox.ItemsSource != null)
+                if (newNavigator.SelectedItem == null || _listBox.ItemsSource == null)
                 {
-                    // Check if the item actually exists in the source before selecting
-                    if (newNavigator.Items?.Contains(newNavigator.SelectedItem) == true)
-                    {
-                        _listBox.SelectedItem = newNavigator.SelectedItem;
-                    }
-                    else
-                    {
-                        System.Diagnostics.Debug.WriteLine($"Warning: Initial SelectedItem {newNavigator.SelectedItem.Id} not found in ItemsSource.");
-                    }
+                    return;
+                }
+
+                // Check if the item actually exists in the source before selecting
+                if (newNavigator.Items?.Contains(newNavigator.SelectedItem) == true)
+                {
+                    _listBox.SelectedItem = newNavigator.SelectedItem;
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine($"Warning: Initial SelectedItem {newNavigator.SelectedItem.Id} not found in ItemsSource.");
                 }
             }
             else if (_listBox != null)
@@ -94,17 +96,40 @@ public partial class NavigationListBox : UserControl
         }
         else if (change.Property == ShowLabelsProperty)
         {
-            // We may want to adjust layout based on whether labels are shown
-            this.InvalidateVisual();
+            UpdateCollapsedState();
         }
     }
 
     private void OnNavigatorNavigated(object? sender, NavigatedEventArgs e)
     {
         // Update selection when navigation occurs
-        if (e.Item != null && _listBox != null && !Equals(_listBox.SelectedItem, e.Item))
+        if (_listBox != null && !Equals(_listBox.SelectedItem, e.Item))
         {
             _listBox.SelectedItem = e.Item;
+        }
+    }
+
+    private void UpdateCollapsedState()
+    {
+        // This method will update the visual appearance based on ShowLabels
+        if (_listBox == null)
+        {
+            return;
+        }
+
+        // You can adjust padding, margins, and other properties here
+        _listBox.Padding = ShowLabels ? new Thickness(8, 0) : new Thickness(0);
+
+        // Add/remove classes to control styling
+        if (ShowLabels)
+        {
+            this.Classes.Remove("collapsed");
+            this.Classes.Add("expanded");
+        }
+        else
+        {
+            this.Classes.Remove("expanded");
+            this.Classes.Add("collapsed");
         }
     }
 

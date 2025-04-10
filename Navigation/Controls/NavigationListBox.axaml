@@ -90,6 +90,16 @@
             <Style Selector="ListBoxItem:disabled TextBlock">
                 <Setter Property="Foreground" Value="{DynamicResource Brush.Text.Disabled}" />
             </Style>
+
+            <Style Selector="local|NavigationListBox.collapsed TextBlock">
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+
+            <Style Selector="local|NavigationListBox.expanded TextBlock">
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="FontSize" Value="14" />
+            </Style>
         </ListBox.Styles>
     </ListBox>
 </UserControl>
